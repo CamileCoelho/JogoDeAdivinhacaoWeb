@@ -1,15 +1,15 @@
 class JogoDeAdivinhacao 
 {
-    btnTentar = document.getElementById("btn-tentar");
+	btnTentar = document.getElementById("btn-tentar");
 	txtTentativa = document.getElementById("input-numero");
 	txtFeedback = document.getElementById("txtFeedback");
 
 	numeroImputado = 0;
 	numeroCorreto = 0;
-    tentativas = 20;
+  tentativas = 20;
 
-    constructor() 
-    {
+  constructor() 
+  {
 		this.RegistrarEventos();
 		this.Limpar();
 		this.numeroCorreto = Math.floor(Math.random() * 20) + 1;
@@ -17,14 +17,14 @@ class JogoDeAdivinhacao
 	}
     
 	RegistrarEventos() 
-    {
+  {
 		this.txtTentativa.addEventListener("keyup", (e) => this.NumeroImputado(e.target.value));
 
 		this.btnTentar.addEventListener("click", () => this.VerificarSeAcertou());
 	}
 
-    NumeroImputado(numero) 
-    {
+	NumeroImputado(numero) 
+	{
 		this.txtFeedback.visibility = "hidden";
 
 		const caracteresValidos = "123456789";
@@ -65,7 +65,7 @@ class JogoDeAdivinhacao
 	}
     
 	VerificarSeAcertou() 
-    {
+	{
 		if (this.tentativas == 1 && this.numeroImputado != this.numeroCorreto) {
 			this.Perdeu();
 			return;
@@ -80,8 +80,8 @@ class JogoDeAdivinhacao
 		}
 	}
 
-    TentarNovamente() 
-    {
+	TentarNovamente() 
+	{
 		if (this.numeroImputado < this.numeroCorreto) {
 			this.MensagemTenteNovamente("menor");
 		}
@@ -91,13 +91,13 @@ class JogoDeAdivinhacao
 	}
 
 	async MensagemTenteNovamente(feedbackString) 
-    {
+	{
         this.txtFeedback.style.visibility = "visible";
 		this.txtFeedback.textContent = `Seu número é ${feedbackString} do que o Número Secreto.`;
 	}
 
 	async Perdeu() 
-    {
+	{
         this.txtFeedback.style.visibility = "visible";
 		this.txtFeedback.style.background = "#b91c1c";
 		this.txtFeedback.textContent = "Você perdeu, jogue novamente!";
@@ -106,7 +106,7 @@ class JogoDeAdivinhacao
 	}
 
 	async Ganhou() 
-    {
+	{
         this.txtFeedback.style.visibility = "visible";
 		this.txtFeedback.style.background = "#047857";
 		this.txtFeedback.textContent = "Parabéns, você ganhou!";
@@ -114,8 +114,8 @@ class JogoDeAdivinhacao
 		this.btnTentar.disabled = true;
 	}
 
-    Limpar() 
-    {
+	Limpar() 
+	{
 		this.txtTentativa.disabled = false;
 		this.txtFeedback.style.visibility = "hidden";
 		this.txtTentativa.value = "";
